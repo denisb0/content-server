@@ -20,7 +20,7 @@ _releaser:
 	docker push ${DOCKER_USERNAME}/${APPLICATION_NAME}:${_BUILD_ARGS_RELEASE_TAG}
 
 _runner:
-	docker run --publish ${PORT}:8080 ${DOCKER_USERNAME}/${APPLICATION_NAME}:${_BUILD_ARGS_TAG}
+	docker run -v $(shell pwd)/.data/content:/app --publish ${PORT}:8080 ${DOCKER_USERNAME}/${APPLICATION_NAME}:${_BUILD_ARGS_TAG}
 
 build:
 	$(MAKE) _builder
